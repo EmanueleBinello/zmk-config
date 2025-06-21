@@ -8,18 +8,36 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/consumer.h>
 
-/* Uncomment this block if using RGB
 &led_strip {
     chain-length = <6>;
     // chain-length = <35>; // Uncomment if using both per-key and underglow LEDs
     // chain-length = <29>; // Uncomment if using only per-key LEDs.
 };
- */
+
 
 / {
     keymap {
         compatible = "zmk,keymap";
+
+
+    // Mappa del trimmer sinistro
+        left_trimmer {
+            bindings = <
+                // Ruota a sinistra per abbassare il volume
+                &rotary_encoder LEFT_CCW C_VOL_DN
+                // Ruota a sinistra per alzare il volume
+                &rotary_encoder LEFT_CW C_VOL_UP
+
+                // Un click per Play/Pausa
+                &multi_tap LEFT_1 C_MEDIA_PLAY_PAUSE
+                // Doppio click per avanzamento traccia
+                &multi_tap LEFT_2 C_MEDIA_NEXT_TRACK
+                // Triplo click per ritorno alla traccia precedente
+                &multi_tap LEFT_3 C_MEDIA_PREV_TRACK
+            >;
+        };
 
         default_layer {
 // ------------------------------------------------------------------------------------------------------------
